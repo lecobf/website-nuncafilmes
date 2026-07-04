@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leco Petersen — Diretor de Fotografia</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav">
+  <a href="#hero" class="nav__brand">LECO PETERSEN</a>
+  <nav class="nav__links">
+    <a href="#hero">Home</a>
+    <a href="#trabalhos">Portfólio</a>
+    <a href="mailto:contato@lecopetersen.com">Contato</a>
+  </nav>
+</header>
+
+<section id="hero" class="hero">
+  <div class="hero__video-wrap">
+    <iframe
+      class="hero__video"
+      src="https://www.youtube.com/embed/nrDqX3kzIYQ?autoplay=1&mute=1&loop=1&playlist=nrDqX3kzIYQ&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1"
+      title="Reel de abertura"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section id="sobre" class="sobre">
+  <div class="sobre__foto">
+    <img src="assets/foto-sobre.jpg" alt="Leco Petersen">
+  </div>
+  <div class="sobre__texto">
+    <p id="sobre-texto"></p>
+  </div>
+</section>
+
+<section id="trabalhos" class="trabalhos">
+  <div class="trabalhos__filtros" id="filtros">
+    <button class="filtro is-ativo" data-filtro="todos">Todos</button>
+    <button class="filtro" data-filtro="filmes">Filmes</button>
+    <button class="filtro" data-filtro="videoclipes">Videoclipes</button>
+    <button class="filtro" data-filtro="corporativos">Corporativos</button>
+    <button class="filtro" data-filtro="pessoais">Pessoais</button>
+  </div>
+
+  <div class="trabalhos__grid" id="grid"></div>
+
+  <p class="trabalhos__vazio" id="vazio" hidden>Em breve novos trabalhos nesta categoria.</p>
+
+  <button class="btn-ver-mais" id="verMais" hidden>Ver mais</button>
+</section>
+
+<div class="modal" id="modal" hidden>
+  <div class="modal__backdrop" id="modalBackdrop"></div>
+  <div class="modal__conteudo">
+    <button class="modal__fechar" id="modalFechar" aria-label="Fechar">&times;</button>
+    <div class="modal__player">
+      <div id="modalPlayer"></div>
+    </div>
+    <div class="modal__info">
+      <h2 id="modalTitulo"></h2>
+      <p id="modalCreditos"></p>
+    </div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

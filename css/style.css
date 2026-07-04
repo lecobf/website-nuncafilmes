@@ -1,0 +1,324 @@
+/* Tratamento visual neutro só para validar estrutura e comportamento —
+   identidade visual (cores, tipografia, marca) ainda não foi definida. */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+  background: #0a0a0a;
+  color: #f2f2f2;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ---------- Menu sobreposto ---------- */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+}
+
+.nav__brand {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.nav__links {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.9rem;
+}
+
+.nav__links a {
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.nav__links a:hover {
+  opacity: 1;
+}
+
+/* ---------- Abertura ---------- */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.hero__video-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77vh; /* garante cobertura 16:9 mesmo em telas estreitas */
+  min-width: 100%;
+  height: 56.25vw; /* 100 / 16 * 9 */
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Apresentação ---------- */
+
+.sobre {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  align-items: center;
+  padding: 6rem 8vw;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sobre__foto {
+  flex: 1 1 280px;
+  max-width: 340px;
+}
+
+.sobre__foto img {
+  width: 100%;
+  display: block;
+  border-radius: 4px;
+}
+
+.sobre__texto {
+  flex: 1 1 380px;
+  font-size: 1.05rem;
+  color: #d8d8d8;
+}
+
+/* ---------- Trabalhos ---------- */
+
+.trabalhos {
+  padding: 4rem 8vw 6rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.trabalhos__filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 1rem;
+}
+
+.filtro {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 0.95rem;
+  cursor: pointer;
+  padding: 0.25rem 0;
+  position: relative;
+}
+
+.filtro:hover {
+  color: #fff;
+}
+
+.filtro.is-ativo {
+  color: #fff;
+}
+
+.filtro.is-ativo::after {
+  content: "";
+  position: absolute;
+  bottom: -1rem;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #fff;
+}
+
+.trabalhos__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .trabalhos__grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .trabalhos__grid { grid-template-columns: 1fr; }
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #1a1a1a;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.thumb:hover img {
+  transform: scale(1.06);
+  opacity: 0.85;
+}
+
+.thumb__creditos {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0));
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.thumb:hover .thumb__creditos {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.thumb__titulo {
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: block;
+}
+
+.thumb__credito {
+  font-size: 0.75rem;
+  color: #ccc;
+  display: block;
+}
+
+.trabalhos__vazio {
+  color: #888;
+  padding: 2rem 0;
+}
+
+.btn-ver-mais {
+  display: block;
+  margin: 3rem auto 0;
+  padding: 0.8rem 2rem;
+  background: transparent;
+  border: 1px solid #555;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 999px;
+  transition: border-color 0.2s ease;
+}
+
+.btn-ver-mais:hover {
+  border-color: #fff;
+}
+
+/* ---------- Modal de visualização ---------- */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vh 4vw;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.modal__conteudo {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 2.2fr) minmax(220px, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 700px) {
+  .modal__conteudo {
+    grid-template-columns: 1fr;
+  }
+}
+
+.modal__fechar {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.modal__player {
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.modal__player iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.modal__info {
+  padding-top: 0.5rem;
+}
+
+.modal__info h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.modal__info p {
+  color: #ccc;
+  font-size: 0.9rem;
+}
