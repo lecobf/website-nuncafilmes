@@ -230,7 +230,8 @@ async function iniciar() {
       fetch(`${CONTEUDO_BASE}/configuracoes.json`),
     ]);
     if (!trabalhosResp.ok || !configResp.ok) throw new Error("Falha ao buscar conteudo");
-    TRABALHOS = await trabalhosResp.json();
+    const trabalhosData = await trabalhosResp.json();
+    TRABALHOS = trabalhosData.trabalhos || [];
     heroConfig = await configResp.json();
   } catch (err) {
     console.error("Nao foi possivel carregar conteudo do GitHub, usando fallback local.", err);

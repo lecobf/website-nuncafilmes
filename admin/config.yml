@@ -1,0 +1,79 @@
+backend:
+  name: github
+  repo: lecobf/website-nuncafilmes
+  branch: master
+  # TODO: preencher com a URL do proxy de OAuth assim que ele for publicado (etapa seguinte).
+  base_url: https://PREENCHER-DEPOIS-DO-PROXY-OAUTH
+
+media_folder: "assets"
+public_folder: "/assets"
+
+collections:
+  - name: "trabalhos"
+    label: "Trabalhos do Portfólio"
+    files:
+      - name: "lista"
+        label: "Lista de Trabalhos"
+        file: "content/trabalhos.json"
+        fields:
+          - label: "Trabalhos"
+            name: "trabalhos"
+            widget: "list"
+            label_singular: "Trabalho"
+            summary: "{{fields.url}}"
+            fields:
+              - label: "URL do vídeo"
+                name: "url"
+                widget: "string"
+                hint: "Link completo do YouTube ou do Vimeo"
+              - label: "Plataforma"
+                name: "plataforma"
+                widget: "select"
+                options:
+                  - { label: "Vimeo", value: "vimeo" }
+                  - { label: "YouTube", value: "youtube" }
+              - label: "Categorias"
+                name: "categorias"
+                widget: "select"
+                multiple: true
+                options:
+                  - { label: "Filmes", value: "filmes" }
+                  - { label: "Videoclipes", value: "videoclipes" }
+                  - { label: "Corporativos", value: "corporativos" }
+                  - { label: "Pessoais", value: "pessoais" }
+              - label: "Título personalizado"
+                name: "tituloPersonalizado"
+                widget: "string"
+                required: false
+                hint: "Se deixar vazio, usa o título vindo do YouTube/Vimeo"
+              - label: "Descrição personalizada"
+                name: "descricaoPersonalizada"
+                widget: "text"
+                required: false
+                hint: "Se deixar vazio, usa a descrição da plataforma (quando disponível)"
+              - label: "Créditos"
+                name: "creditos"
+                widget: "text"
+                required: false
+                hint: "Texto livre, do jeito que fizer sentido pra esse trabalho. Ex: Direção: Fulano · Produtora: Nunca Filmes · 2024"
+              - label: "Visível no site"
+                name: "visivel"
+                widget: "boolean"
+                default: true
+
+  - name: "configuracoes"
+    label: "Configurações do Site"
+    files:
+      - name: "geral"
+        label: "Vídeo de Abertura"
+        file: "content/configuracoes.json"
+        fields:
+          - label: "URL do vídeo de abertura"
+            name: "heroUrl"
+            widget: "string"
+          - label: "Plataforma"
+            name: "heroPlataforma"
+            widget: "select"
+            options:
+              - { label: "YouTube", value: "youtube" }
+              - { label: "Vimeo", value: "vimeo" }
