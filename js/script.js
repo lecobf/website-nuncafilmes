@@ -1,17 +1,45 @@
 // Controla: preenchimento do texto de Sobre, busca de titulo/thumbnail reais
-// no oEmbed publico do Vimeo, filtro de categorias, paginacao "ver mais" e modal de visualizacao.
+// no oEmbed publico do Vimeo, filtro de categorias, paginacao "ver mais" e
+// reproducao de video em tela cheia no lugar do reel de abertura.
 
 const CREDITO_PADRAO = "Direção de Fotografia: Leco Petersen";
 const PAGINA_TAMANHO = 6;
 
-let filtroAtual = "todos";
-let itensVisiveis = PAGINA_TAMANHO;
+let filtroAtual = "filmes";
+let expandido = false;
 const cacheOembed = new Map();
+
+// Guarda o src original do reel de abertura para poder restaurar ao fechar um video.
+const heroVideo = document.getElementById("heroVideo");
+const HERO_SRC_ORIGINAL = heroVideo.src;
 
 document.getElementById("sobre-texto").textContent = SOBRE_TEXTO;
 
+// ---------- Som do reel de abertura (loop mudo por padrao) ----------
+
+const ICONE_MUDO =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 9v6h4l5 5V4L8 9H4z"/><line x1="16" y1="9" x2="22" y2="15"/><line x1="22" y1="9" x2="16" y2="15"/></svg>';
+const ICONE_COM_SOM =
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 9v6h4l5 5V4L8 9H4z"/><path d="M16.5 8.5a5 5 0 010 7"/><path d="M19 6a9 9 0 010 12"/></svg>';
+
+let audioAtivo = false;
+const botaoSom = document.getElementById("botaoSom");
+
+function enviarComandoYoutube(func) {
+  heroVideo.contentWindow.postMessage(
+    JSON.stringify({ event: "command", func, args: [] }),
+    "*"
+  );
+}
+
+botaoSom.addEventListener("click", () => {
+  audioAtivo = !audioAtivo;
+  enviarComandoYoutube(audioAtivo ? "unMute" : "mute");
+  botaoSom.innerHTML = audioAtivo ? ICONE_COM_SOM : ICONE_MUDO;
+  botaoSom.setAttribute("aria-label", audioAtivo ? "Desativar som" : "Ativar som");
+});
+
 function trabalhosDoFiltro(filtro) {
-  if (filtro === "todos") return WORKS;
   return WORKS.filter((w) => w.category === filtro);
 }
 
@@ -49,7 +77,7 @@ async function renderizarGrid() {
   }
   vazio.hidden = true;
 
-  const visiveis = lista.slice(0, itensVisiveis);
+  const visiveis = expandido ? lista : lista.slice(0, PAGINA_TAMANHO);
   grid.innerHTML = "";
 
   for (const trabalho of visiveis) {
@@ -72,10 +100,15 @@ async function renderizarGrid() {
       titulo.textContent = dados.title || "";
     });
 
-    card.addEventListener("click", () => abrirModal(trabalho));
+    card.addEventListener("click", () => tocarVideo(trabalho));
   }
 
-  botaoVerMais.hidden = itensVisiveis >= lista.length;
+  if (lista.length <= PAGINA_TAMANHO) {
+    botaoVerMais.hidden = true;
+  } else {
+    botaoVerMais.hidden = false;
+    botaoVerMais.textContent = expandido ? "Exibir menos" : "Ver mais";
+  }
 }
 
 document.getElementById("filtros").addEventListener("click", (e) => {
@@ -88,42 +121,52 @@ document.getElementById("filtros").addEventListener("click", (e) => {
   btn.classList.add("is-ativo");
 
   filtroAtual = btn.dataset.filtro;
-  itensVisiveis = PAGINA_TAMANHO;
+  expandido = false;
   renderizarGrid();
 });
 
 document.getElementById("verMais").addEventListener("click", () => {
-  itensVisiveis += PAGINA_TAMANHO;
+  expandido = !expandido;
   renderizarGrid();
 });
 
-async function abrirModal(trabalho) {
-  const modal = document.getElementById("modal");
-  const player = document.getElementById("modalPlayer");
-  const titulo = document.getElementById("modalTitulo");
-  const creditos = document.getElementById("modalCreditos");
-
+async function tocarVideo(trabalho) {
   const dados = await buscarOembed(trabalho.vimeoId);
 
-  titulo.textContent = dados.title || "";
-  creditos.textContent = CREDITO_PADRAO;
-  player.innerHTML = `<iframe src="https://player.vimeo.com/video/${trabalho.vimeoId}?autoplay=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+  heroVideo.src = `https://player.vimeo.com/video/${trabalho.vimeoId}?autoplay=1`;
+  heroVideo.classList.add("is-player");
+  document.getElementById("fecharVideo").hidden = false;
+  document.getElementById("nav").hidden = true;
+  botaoSom.hidden = true;
 
-  modal.hidden = false;
-  document.body.style.overflow = "hidden";
+  document.getElementById("creditosTitulo").textContent = dados.title || "";
+  document.getElementById("creditosTexto").textContent = CREDITO_PADRAO;
+  document.getElementById("creditosVideo").hidden = false;
+
+  document.getElementById("sobre").hidden = true;
+
+  document.getElementById("hero").scrollIntoView();
 }
 
-function fecharModal() {
-  const modal = document.getElementById("modal");
-  document.getElementById("modalPlayer").innerHTML = "";
-  modal.hidden = true;
-  document.body.style.overflow = "";
+function fecharVideo() {
+  heroVideo.src = HERO_SRC_ORIGINAL;
+  heroVideo.classList.remove("is-player");
+  document.getElementById("fecharVideo").hidden = true;
+  document.getElementById("nav").hidden = false;
+  document.getElementById("creditosVideo").hidden = true;
+  document.getElementById("sobre").hidden = false;
+
+  audioAtivo = false;
+  botaoSom.innerHTML = ICONE_MUDO;
+  botaoSom.setAttribute("aria-label", "Ativar som");
+  botaoSom.hidden = false;
 }
 
-document.getElementById("modalFechar").addEventListener("click", fecharModal);
-document.getElementById("modalBackdrop").addEventListener("click", fecharModal);
+document.getElementById("fecharVideo").addEventListener("click", fecharVideo);
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") fecharModal();
+  if (e.key === "Escape" && !document.getElementById("fecharVideo").hidden) {
+    fecharVideo();
+  }
 });
 
 renderizarGrid();

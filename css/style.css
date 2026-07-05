@@ -7,6 +7,13 @@
   padding: 0;
 }
 
+/* Garante que clicar num item do menu pare exatamente abaixo dele, sem cortar o topo da seção. */
+#hero,
+#trabalhos,
+#sobre {
+  scroll-margin-top: 94px;
+}
+
 body {
   font-family: -apple-system, "Segoe UI", Arial, sans-serif;
   background: #0a0a0a;
@@ -19,18 +26,21 @@ a {
   text-decoration: none;
 }
 
-/* ---------- Menu sobreposto ---------- */
+/* ---------- Menu ---------- */
 
 .nav {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 2rem;
+  background: #0a0a0a;
+}
+
+.nav[hidden] {
+  display: none;
 }
 
 .nav__brand {
@@ -46,12 +56,29 @@ a {
 }
 
 .nav__links a {
+  position: relative;
   opacity: 0.85;
+  padding-bottom: 0.2rem;
   transition: opacity 0.2s ease;
+}
+
+.nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+  transition: right 0.25s ease;
 }
 
 .nav__links a:hover {
   opacity: 1;
+}
+
+.nav__links a:hover::after {
+  right: 0;
 }
 
 /* ---------- Abertura ---------- */
@@ -59,7 +86,7 @@ a {
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 94px); /* 94px = altura do menu, que agora ocupa espaço proprio */
   overflow: hidden;
   background: #000;
 }
@@ -71,7 +98,6 @@ a {
   width: 100%;
   height: 100%;
   transform: translate(-50%, -50%);
-  pointer-events: none;
 }
 
 .hero__video {
@@ -85,27 +111,135 @@ a {
   transform: translate(-50%, -50%);
 }
 
+/* Quando toca um video de verdade (com controles), preenche a area visivel
+   sem cortar nada — a técnica de cobertura acima esconderia a barra de controles. */
+.hero__video.is-player {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  transform: none;
+}
+
+.hero__fechar {
+  position: absolute;
+  top: 6rem;
+  right: 3vw;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.hero__fechar:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero__fechar[hidden] {
+  display: none;
+}
+
+.hero__som {
+  position: absolute;
+  bottom: 2.5rem;
+  right: 3vw;
+  z-index: 50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.hero__som svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hero__som:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.hero__som[hidden] {
+  display: none;
+}
+
+/* ---------- Créditos do vídeo em reprodução ---------- */
+
+.creditos-video {
+  background: #111214;
+  padding: 3rem 8vw;
+}
+
+.creditos-video[hidden] {
+  display: none;
+}
+
+.creditos-video__conteudo {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.creditos-video__conteudo h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+
+.creditos-video__conteudo p {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
 /* ---------- Apresentação ---------- */
 
 .sobre {
+  background: #111214;
+  padding: 6rem 8vw;
+}
+
+.sobre[hidden] {
+  display: none;
+}
+
+.sobre__conteudo {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 3.5rem;
   align-items: center;
-  padding: 6rem 8vw;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .sobre__foto {
-  flex: 1 1 280px;
-  max-width: 340px;
+  flex: 0 0 260px;
+  width: 260px;
 }
 
 .sobre__foto img {
   width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   display: block;
-  border-radius: 4px;
+  border-radius: 50%;
 }
 
 .sobre__texto {
@@ -114,12 +248,42 @@ a {
   color: #d8d8d8;
 }
 
+.sobre__contato {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.sobre__contato a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #999;
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.sobre__contato a:hover {
+  color: #fff;
+}
+
+.sobre__contato svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}
+
 /* ---------- Trabalhos ---------- */
 
 .trabalhos {
-  padding: 4rem 8vw 6rem;
-  max-width: 1400px;
+  padding: 4rem 0 6rem;
+}
+
+.trabalhos__conteudo {
+  max-width: 1800px;
   margin: 0 auto;
+  padding: 0 4vw;
 }
 
 .trabalhos__filtros {
@@ -246,79 +410,8 @@ a {
   border-color: #fff;
 }
 
-/* ---------- Modal de visualização ---------- */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 3vh 4vw;
-}
-
-.modal[hidden] {
+.btn-ver-mais[hidden] {
   display: none;
 }
 
-.modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.9);
-}
 
-.modal__conteudo {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 2.2fr) minmax(220px, 1fr);
-  gap: 2rem;
-  max-width: 1200px;
-  width: 100%;
-  max-height: 90vh;
-  overflow-y: auto;
-}
-
-@media (max-width: 700px) {
-  .modal__conteudo {
-    grid-template-columns: 1fr;
-  }
-}
-
-.modal__fechar {
-  position: absolute;
-  top: -2.5rem;
-  right: 0;
-  background: none;
-  border: none;
-  color: #fff;
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.modal__player {
-  aspect-ratio: 16 / 9;
-  background: #000;
-}
-
-.modal__player iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-.modal__info {
-  padding-top: 0.5rem;
-}
-
-.modal__info h2 {
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-}
-
-.modal__info p {
-  color: #ccc;
-  font-size: 0.9rem;
-}
