@@ -226,8 +226,8 @@ document.addEventListener("keydown", (e) => {
 async function iniciar() {
   try {
     const [trabalhosResp, configResp] = await Promise.all([
-      fetch(`${CONTEUDO_BASE}/trabalhos.json`),
-      fetch(`${CONTEUDO_BASE}/configuracoes.json`),
+      fetch(`${CONTEUDO_BASE}/trabalhos.json`, { cache: "no-store" }),
+      fetch(`${CONTEUDO_BASE}/configuracoes.json`, { cache: "no-store" }),
     ]);
     if (!trabalhosResp.ok || !configResp.ok) throw new Error("Falha ao buscar conteudo");
     const trabalhosData = await trabalhosResp.json();
