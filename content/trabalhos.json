@@ -119,7 +119,8 @@
       "tituloPersonalizado": "\"Lua\" (Pure Feeling)",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
-      "visivel": true
+      "visivel": true,
+      "thumbnailPersonalizado": ""
     },
     {
       "plataforma": "youtube",
@@ -153,7 +154,7 @@
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "visivel": true,
-      "thumbnailPersonalizado": "https://www.youtube.com/watch?v=83vUPqj1w94"
+      "thumbnailPersonalizado": ""
     },
     {
       "plataforma": "youtube",
