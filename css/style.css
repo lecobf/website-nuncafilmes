@@ -207,6 +207,7 @@ a {
 .creditos-video__conteudo p {
   color: #ccc;
   font-size: 0.95rem;
+  white-space: pre-line;
 }
 
 /* ---------- Apresentação ---------- */
@@ -386,6 +387,7 @@ a {
   font-size: 0.75rem;
   color: #ccc;
   display: block;
+  white-space: pre-line;
 }
 
 .trabalhos__vazio {
