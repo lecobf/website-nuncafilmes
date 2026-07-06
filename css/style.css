@@ -186,7 +186,7 @@ a {
 
 .creditos-video {
   background: #111214;
-  padding: 3rem 8vw;
+  padding: 3rem 0;
 }
 
 .creditos-video[hidden] {
@@ -194,8 +194,9 @@ a {
 }
 
 .creditos-video__conteudo {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
+  padding: 0 4vw;
 }
 
 .creditos-video__conteudo h2 {
