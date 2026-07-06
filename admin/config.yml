@@ -31,6 +31,11 @@ collections:
                 options:
                   - { label: "Vimeo", value: "vimeo" }
                   - { label: "YouTube", value: "youtube" }
+              - label: "Thumbnail personalizada"
+                name: "thumbnailPersonalizado"
+                widget: "image"
+                required: false
+                hint: "Se deixar vazio, usa a miniatura vinda do YouTube/Vimeo. Pode enviar uma imagem ou colar uma URL."
               - label: "Categorias"
                 name: "categorias"
                 widget: "select"

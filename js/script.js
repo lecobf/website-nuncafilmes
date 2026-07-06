@@ -3,12 +3,20 @@
 // filtro de categorias, paginacao "ver mais" e a reproducao em tela cheia no
 // lugar do reel de abertura.
 
-const CONTEUDO_BASE =
-  "https://raw.githubusercontent.com/lecobf/website-nuncafilmes/master/content";
+const REPO_RAW_BASE = "https://raw.githubusercontent.com/lecobf/website-nuncafilmes/master";
+const CONTEUDO_BASE = `${REPO_RAW_BASE}/content`;
 const HERO_FALLBACK = {
   heroPlataforma: "youtube",
   heroUrl: "https://www.youtube.com/watch?v=nrDqX3kzIYQ",
 };
+
+// Imagens enviadas pelo CMS ficam salvas no repositorio (ex: "/assets/foo.jpg"),
+// entao precisam ser buscadas do GitHub, igual ao restante do conteudo.
+function resolverThumbnail(caminho) {
+  if (!caminho) return "";
+  if (/^https?:\/\//.test(caminho)) return caminho;
+  return `${REPO_RAW_BASE}${caminho.startsWith("/") ? "" : "/"}${caminho}`;
+}
 
 const PAGINA_TAMANHO = 6;
 
@@ -145,7 +153,7 @@ async function renderizarGrid() {
       const img = card.querySelector("img");
       const titulo = card.querySelector(".thumb__titulo");
       const tituloFinal = trabalho.tituloPersonalizado || dados.title || "";
-      img.src = dados.thumbnail_url || "";
+      img.src = resolverThumbnail(trabalho.thumbnailPersonalizado) || dados.thumbnail_url || "";
       img.alt = tituloFinal;
       titulo.textContent = tituloFinal;
     });
