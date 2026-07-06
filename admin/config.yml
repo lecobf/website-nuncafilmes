@@ -2,8 +2,7 @@ backend:
   name: github
   repo: lecobf/website-nuncafilmes
   branch: master
-  # TODO: preencher com a URL do proxy de OAuth assim que ele for publicado (etapa seguinte).
-  base_url: https://PREENCHER-DEPOIS-DO-PROXY-OAUTH
+  base_url: https://lecopetersen-cms-auth.lecobf.workers.dev
 
 media_folder: "assets"
 public_folder: "/assets"
