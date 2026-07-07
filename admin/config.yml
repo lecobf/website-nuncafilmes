@@ -7,63 +7,75 @@ backend:
 media_folder: "assets"
 public_folder: "/assets"
 
+# Campos de um trabalho, reaproveitados nas 4 categorias abaixo via ancora YAML.
+_trabalho_fields: &trabalho_fields
+  - label: "URL do vídeo"
+    name: "url"
+    widget: "string"
+    hint: "Link completo do YouTube ou do Vimeo"
+  - label: "Plataforma"
+    name: "plataforma"
+    widget: "select"
+    options:
+      - { label: "Vimeo", value: "vimeo" }
+      - { label: "YouTube", value: "youtube" }
+  - label: "Thumbnail personalizada"
+    name: "thumbnailPersonalizado"
+    widget: "image"
+    required: false
+    hint: "Se deixar vazio, usa a miniatura vinda do YouTube/Vimeo. Pode enviar uma imagem ou colar uma URL."
+  - label: "Título personalizado"
+    name: "tituloPersonalizado"
+    widget: "string"
+    required: false
+    hint: "Se deixar vazio, usa o título vindo do YouTube/Vimeo"
+  - label: "Descrição personalizada"
+    name: "descricaoPersonalizada"
+    widget: "text"
+    required: false
+    hint: "Se deixar vazio, usa a descrição da plataforma (quando disponível)"
+  - label: "Créditos"
+    name: "creditos"
+    widget: "text"
+    required: false
+    hint: "Texto livre, do jeito que fizer sentido pra esse trabalho. Ex: Direção: Fulano · Produtora: Nunca Filmes · 2024"
+  - label: "Visível no site"
+    name: "visivel"
+    widget: "boolean"
+    default: true
+
 collections:
   - name: "trabalhos"
     label: "Trabalhos do Portfólio"
     files:
       - name: "lista"
-        label: "Lista de Trabalhos"
+        label: "Trabalhos por Categoria"
         file: "content/trabalhos.json"
         fields:
-          - label: "Trabalhos"
-            name: "trabalhos"
+          - label: "Filmes"
+            name: "filmes"
             widget: "list"
             label_singular: "Trabalho"
-            summary: "{{fields.url}}"
-            fields:
-              - label: "URL do vídeo"
-                name: "url"
-                widget: "string"
-                hint: "Link completo do YouTube ou do Vimeo"
-              - label: "Plataforma"
-                name: "plataforma"
-                widget: "select"
-                options:
-                  - { label: "Vimeo", value: "vimeo" }
-                  - { label: "YouTube", value: "youtube" }
-              - label: "Thumbnail personalizada"
-                name: "thumbnailPersonalizado"
-                widget: "image"
-                required: false
-                hint: "Se deixar vazio, usa a miniatura vinda do YouTube/Vimeo. Pode enviar uma imagem ou colar uma URL."
-              - label: "Categorias"
-                name: "categorias"
-                widget: "select"
-                multiple: true
-                options:
-                  - { label: "Filmes", value: "filmes" }
-                  - { label: "Videoclipes", value: "videoclipes" }
-                  - { label: "Corporativos", value: "corporativos" }
-                  - { label: "Pessoais", value: "pessoais" }
-              - label: "Título personalizado"
-                name: "tituloPersonalizado"
-                widget: "string"
-                required: false
-                hint: "Se deixar vazio, usa o título vindo do YouTube/Vimeo"
-              - label: "Descrição personalizada"
-                name: "descricaoPersonalizada"
-                widget: "text"
-                required: false
-                hint: "Se deixar vazio, usa a descrição da plataforma (quando disponível)"
-              - label: "Créditos"
-                name: "creditos"
-                widget: "text"
-                required: false
-                hint: "Texto livre, do jeito que fizer sentido pra esse trabalho. Ex: Direção: Fulano · Produtora: Nunca Filmes · 2024"
-              - label: "Visível no site"
-                name: "visivel"
-                widget: "boolean"
-                default: true
+            summary: "{{fields.tituloPersonalizado}} — {{fields.url}}"
+            fields: *trabalho_fields
+          - label: "Videoclipes"
+            name: "videoclipes"
+            widget: "list"
+            label_singular: "Trabalho"
+            summary: "{{fields.tituloPersonalizado}} — {{fields.url}}"
+            fields: *trabalho_fields
+          - label: "Corporativos"
+            name: "corporativos"
+            widget: "list"
+            label_singular: "Trabalho"
+            summary: "{{fields.tituloPersonalizado}} — {{fields.url}}"
+            fields: *trabalho_fields
+          - label: "Pessoais"
+            name: "pessoais"
+            widget: "list"
+            label_singular: "Trabalho"
+            summary: "{{fields.tituloPersonalizado}} — {{fields.url}}"
+            fields: *trabalho_fields
 
   - name: "configuracoes"
     label: "Configurações do Site"

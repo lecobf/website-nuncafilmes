@@ -1,11 +1,8 @@
 {
-  "trabalhos": [
+  "filmes": [
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/680273904",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "O Jantar com a Senhora Beckett",
       "descricaoPersonalizada": "Direção: Décio Antunes\nDir. de Fotografia: Leco Petersen\nAno: 2022",
       "creditos": "Direção: Décio Antunes\nDir. de Fotografia: Leco Petersen\nAno: 2022",
@@ -14,9 +11,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/1067560498",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "O Último Trêm",
       "descricaoPersonalizada": "Direção: Boca Migotto\nDireção de Fotografia: Leco Petersen\nAno: 2025",
       "creditos": "Direção: Boca Migotto\nDireção de Fotografia: Leco Petersen\nAno: 2025",
@@ -25,9 +19,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/990329163",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "Janeiro (Teaser)",
       "descricaoPersonalizada": "Direção: Boca Migotto\nDir. de Fotografia: Leco Petersen\nAno: 2024",
       "creditos": "Direção: Boca Migotto\nDir. de Fotografia: Leco Petersen\nAno: 2024",
@@ -36,9 +27,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/832149427",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "Ferrolho (Trailer)",
       "descricaoPersonalizada": "Direção: Alexandre Derlam\nDir. de Fotografia: Leco Petersen\nAno: 2023",
       "creditos": "Direção: Alexandre Derlam\nDir. de Fotografia: Leco Petersen\nAno: 2023",
@@ -47,9 +35,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/190842366",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "Djorge, da Bonja pro Mundo",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2016",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2016",
@@ -58,9 +43,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/394093941",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "SUS - Em Defesa da Vida",
       "descricaoPersonalizada": "Direção: Guilherme Castro\nDir. Fotografia: Leco Petersen\nAno: 2020",
       "creditos": "Direção: Guilherme Castro\nDir. Fotografia: Leco Petersen\nAno: 2020",
@@ -69,9 +51,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/235338140",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "Cidade Baixa - Som & Boemia",
       "descricaoPersonalizada": "Direção: Fausto Prado\nDir. Fotografia: Leco Petersen\nAno: 2017",
       "creditos": "Direção: Fausto Prado\nDir. Fotografia: Leco Petersen\nAno: 2017",
@@ -80,9 +59,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/287115398",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "GOLPE",
       "descricaoPersonalizada": "Direção: Guilherme Castro\nDir. Fotografia: Leco Petersen\nAno: 2018",
       "creditos": "Direção: Guilherme Castro\nDir. Fotografia: Leco Petersen\nAno: 2018",
@@ -91,20 +67,16 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/360128893",
-      "categorias": [
-        "filmes"
-      ],
       "tituloPersonalizado": "Laços do Ofício - Um filme sobre amor e Música",
       "descricaoPersonalizada": "Direção: Fasuto Prado\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "creditos": "Direção: Fausto Prado\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "visivel": true
-    },
+    }
+  ],
+  "videoclipes": [
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=F5xAwcdPZyY",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Desaguou\" (Leo Monassa)",
       "descricaoPersonalizada": "Direção: Leo Monassa e Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2018",
       "creditos": "Direção: Leo Monassa e Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2018",
@@ -113,9 +85,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=MRXVCSATpuM",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Lua\" (Pure Feeling)",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
@@ -125,9 +94,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=IDTK_KBUz_w&t=1s",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Tudo é uma coisa só\" (Ação Conjunta) ",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
@@ -136,9 +102,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=AZvk2S5I51c",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Deixa eu Passar\" (Cachola)",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
@@ -147,9 +110,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=83vUPqj1w94",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Recicle\" (Pure Feeling)",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2019",
@@ -159,9 +119,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=xru3a5_468E",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Volta ao Mundo de Dentro\" (Bianca Obino)",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2020",
@@ -170,9 +127,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=smTLlVWAJXU",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Até o Final\"(VZ a Banca) ",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2017",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2017",
@@ -181,9 +135,6 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=PlgLnjMreyY",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Olhos Vendados\"(Experimento Vinte) ",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2017",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2017",
@@ -192,20 +143,17 @@
     {
       "plataforma": "youtube",
       "url": "https://www.youtube.com/watch?v=zFLBWfG3-vE",
-      "categorias": [
-        "videoclipes"
-      ],
       "tituloPersonalizado": "\"Sentimentos Hightech\"(Cachola) ",
       "descricaoPersonalizada": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2016",
       "creditos": "Direção: Leco Petersen\nDir. Fotografia: Leco Petersen\nAno: 2016",
       "visivel": true
-    },
+    }
+  ],
+  "corporativos": [],
+  "pessoais": [
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/357388537",
-      "categorias": [
-        "pessoais"
-      ],
       "tituloPersonalizado": "",
       "descricaoPersonalizada": "",
       "creditos": ".",
@@ -214,9 +162,6 @@
     {
       "plataforma": "vimeo",
       "url": "https://vimeo.com/332357543",
-      "categorias": [
-        "pessoais"
-      ],
       "tituloPersonalizado": "",
       "descricaoPersonalizada": "",
       "creditos": ".",

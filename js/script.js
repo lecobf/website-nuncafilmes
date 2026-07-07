@@ -20,7 +20,7 @@ function resolverThumbnail(caminho) {
 
 const PAGINA_TAMANHO = 6;
 
-let TRABALHOS = [];
+let TRABALHOS = { filmes: [], videoclipes: [], corporativos: [], pessoais: [] };
 let heroConfig = HERO_FALLBACK;
 let filtroAtual = "filmes";
 let expandido = false;
@@ -114,9 +114,7 @@ function resetarBotaoSom() {
 // ---------- Trabalhos (grid, filtros, paginacao) ----------
 
 function trabalhosDoFiltro(filtro) {
-  return TRABALHOS.filter(
-    (t) => t.visivel !== false && (t.categorias || []).includes(filtro)
-  );
+  return (TRABALHOS[filtro] || []).filter((t) => t.visivel !== false);
 }
 
 async function renderizarGrid() {
@@ -238,8 +236,7 @@ async function iniciar() {
       fetch(`${CONTEUDO_BASE}/configuracoes.json`, { cache: "no-store" }),
     ]);
     if (!trabalhosResp.ok || !configResp.ok) throw new Error("Falha ao buscar conteudo");
-    const trabalhosData = await trabalhosResp.json();
-    TRABALHOS = trabalhosData.trabalhos || [];
+    TRABALHOS = await trabalhosResp.json();
     heroConfig = await configResp.json();
   } catch (err) {
     console.error("Nao foi possivel carregar conteudo do GitHub, usando fallback local.", err);
